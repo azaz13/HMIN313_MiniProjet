@@ -47,7 +47,7 @@ public class Main {
 		ArrayList<ArrayList<Integer>> liste = index.rechercheByPredicatInStat("p0");
 		System.out.println(liste.size());
 		for(int i = 0; i < liste.size(); i++){
-			System.out.println(liste.get(i) + " ");
+			System.out.println(liste.get(i).get(0) + " ");
 		}
 		
 		

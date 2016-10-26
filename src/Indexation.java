@@ -120,11 +120,13 @@ public class Indexation {
 				boolean trouver = false;
 				for(int j = 0; j < listeStat.size(); j++){
 					ArrayList<Integer> lStat = listeStat.get(j);
-					System.out.println(lStat.isEmpty());
-					if(lStat.get(0) == objet){
-						lStat.set(1, lStat.get(1) + 1);
-						trouver = true;
-						System.out.println(predicat + "objet trouvé");
+					//System.out.println(lStat.isEmpty());
+					if(!lStat.isEmpty()){
+						if(lStat.get(0) == objet){
+							lStat.set(1, lStat.get(1) + 1);
+							trouver = true;
+							//System.out.println(predicat + "objet trouvé");
+						}
 					}
 				}
 				if(!trouver){
@@ -134,7 +136,7 @@ public class Indexation {
 					os.add(1);
 					listeStat.add(statObjet);
 					//stat.put(predicat, listeStat);
-					System.out.println(predicat  + " objet non trouvé");
+					//System.out.println(predicat  + " objet non trouvé");
 				}
 			}
 
