@@ -87,5 +87,8 @@ public class Dictionnaire {
 					
 			}
 		}
+		brData.close();
+		ipsrData.close();
+		ipsData.close();
 	}
 }
