@@ -50,10 +50,13 @@ public class Indexation {
 	}
 	
 	
+	//Retourne la liste des objets associés au nombre de sujet dans stat
 	public ArrayList<ArrayList<Integer>> rechercheByPredicatInStat(String predicat){
 		return stat.get(predicat);		
 	}
 	
+	
+	//Creation des index et des statistiques
 	public void creationIndex() throws IOException{
 		//Lecture du fichier resultat
 		InputStream ipsData = new FileInputStream(nomFichier);
@@ -86,57 +89,58 @@ public class Indexation {
 				}
 				i++;
 			}
+			
 			//Liste d'objet sujet
 			ArrayList<Integer> os = new ArrayList<Integer>();
 			os.add(objet);
 			os.add(sujet);
 			
-			//On recupere la liste
-			ArrayList<ArrayList<Integer>> liste = index.get(predicat);
+			//On recupere les listes 
+			ArrayList<ArrayList<Integer>> listeIndex = index.get(predicat);
 			ArrayList<ArrayList<Integer>> listeStat = stat.get(predicat);
 			
 			//Le predicat n'est pas dans la liste
-			if(liste == null){
-				liste = new ArrayList<ArrayList<Integer>>();
-				liste.add(os);
-				index.put(predicat, liste);
-				
-				//ListeStat
-				listeStat = new ArrayList<ArrayList<Integer>>();
-				ArrayList<Integer> statObjet = new ArrayList<Integer>();
-				statObjet.add(objet);
-				statObjet.add(1);
-				listeStat.add(statObjet);
-				stat.put(predicat, listeStat);
-				
+			if(listeIndex == null){
+				listeIndex = new ArrayList<ArrayList<Integer>>();
+				listeIndex.add(os);
+				index.put(predicat, listeIndex);
 			}
 			//Le predicat est dans la hashtable
 			else{
-				boolean b = liste.contains(os);
+				boolean b = listeIndex.contains(os);
 				if(!b){
-					liste.add(os);
+					listeIndex.add(os);
 				}
-				
+			}
+			
+			//Liste objet nbSujet
+			ArrayList<Integer> statObjet = new ArrayList<Integer>();
+			statObjet.add(objet);
+			statObjet.add(1);
+			
+			//Le predicat n'est pas dans la liste
+			if(listeStat == null){
+				listeStat = new ArrayList<ArrayList<Integer>>();
+				listeStat.add(statObjet);
+				stat.put(predicat, listeStat);
+			}
+			//Le predicat est dans la liste
+			else{
 				boolean trouver = false;
+				
+				//On parcourt la liste pour trouver l'objet voulu 
 				for(int j = 0; j < listeStat.size(); j++){
 					ArrayList<Integer> lStat = listeStat.get(j);
-					//System.out.println(lStat.isEmpty());
 					if(!lStat.isEmpty()){
 						if(lStat.get(0) == objet){
 							lStat.set(1, lStat.get(1) + 1);
 							trouver = true;
-							//System.out.println(predicat + "objet trouvé");
 						}
 					}
 				}
+				//On n'a pas trouvé l'objet voulu donc on le rajoute
 				if(!trouver){
-					//listeStat = new ArrayList<ArrayList<Integer>>();
-					ArrayList<Integer> statObjet = new ArrayList<Integer>();
-					os.add(objet);
-					os.add(1);
 					listeStat.add(statObjet);
-					//stat.put(predicat, listeStat);
-					//System.out.println(predicat  + " objet non trouvé");
 				}
 			}
 
