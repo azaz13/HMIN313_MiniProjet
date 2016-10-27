@@ -167,33 +167,5 @@ public class Indexation {
 				
 	}
 	
-	
-	
-	//Creation des statistiques
-	/*public void creationStatistique(){
-		
-		Iterator i = index.keySet().iterator();
-		 
-		while (i.hasNext())
-		{
-		    String predicat = (String)i.next();		    
-		    ArrayList<ArrayList<Integer>> valeur = index.get(predicat);
-		    for(int j = 0; j < dico.objet.size(); j++){
-		    	
-		    	
-		    	if(j == 0){
-		    		
-		    	}
-		    	else{
-		    		
-		    	}
-		    }
-		    
-		    
-		    //System.out.println(clef + " " +valeur);
-		}
-	}*/
-	
-	
 
 }

@@ -23,15 +23,16 @@ public class Main {
 		System.out.println("Predicat key " + d.getPredicatByValue("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"));*/
 		System.out.println("Dictionnaire créé");
 		
-		//Indexation
-		Indexation index = new Indexation(d, nom);
-		index.creationIndex();
-		ArrayList<ArrayList<Integer>> os = index.getTabByPredicat("p0");
+		//Indexation et Statistique
+		Indexation indexation = new Indexation(d, nom);
+		indexation.creationIndex();
 		System.out.println("Indexation faite");
 
-		/*System.out.println("taille os " + os.size());
-		for(int i = 0; i < os.size(); i++){
-			System.out.println(os.get(i) + " ");
+		//Affichage des valeurs dans stat pour p0
+		/*ArrayList<ArrayList<Integer>> liste = indexation.rechercheByPredicatInStat("p0");
+		System.out.println(liste.size());
+		for(int i = 0; i < liste.size(); i++){
+			System.out.println(liste.get(i).get(0) + " " + liste.get(i).get(1));
 		}*/
 		
 		//Recherche en fonction d'un predicat et d'un objet
@@ -41,14 +42,8 @@ public class Main {
 
 		}*/
 		
-		//Statistique
-		//index.creationStatistique();
+		//Optimisation de la requête
 		
-		ArrayList<ArrayList<Integer>> liste = index.rechercheByPredicatInStat("p0");
-		System.out.println(liste.size());
-		for(int i = 0; i < liste.size(); i++){
-			System.out.println(liste.get(i).get(0) + " " + liste.get(i).get(1));
-		}
 		
 		
 		
