@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Scanner;
 
 public class Main {
 
@@ -42,8 +43,13 @@ public class Main {
 
 		}*/
 		
-		//Optimisation de la requête
+		//Lecture de la requête
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Veuillez saisir une requête :");
+		String str = sc.nextLine();
+		System.out.println("Vous avez saisi : " + str);
 		
+		//Optimisation de la requête
 		
 		
 		
