@@ -73,7 +73,7 @@ public class Requete {
 			if(s.contains("{")){
 				s = s.substring(1, s.length());
 			}
-			else if(s.contains("}")){
+			if(s.contains("}")){
 				s = s.substring(0, s.length() - 1);
 			}
 			argumentWhere.add(s);
