@@ -50,7 +50,8 @@ public class Main {
 		System.out.println("Vous avez saisi : " + str);
 		
 		//Optimisation de la requête
-		
+		Requete requete = new Requete(str);
+		requete.parsageRequete();
 		
 		
 	}
