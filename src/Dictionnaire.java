@@ -14,6 +14,7 @@ public class Dictionnaire {
 	int compteur;
 	int compteurPredicat; 
 
+	
 	Dictionnaire(){
 		dictionnaire = new Hashtable<Integer, String>();
 		predicat = new Hashtable<String, String>();
@@ -22,16 +23,20 @@ public class Dictionnaire {
 		compteurPredicat = 0; 
 	}
 	
+	
+	//Retourne tout le dictionnaire
 	public Hashtable<Integer, String> getDictionnaire(){
 		return dictionnaire;
 	}
 	
-	//retourne la valeur en fonction de la clé dans dictionnaire
+	
+	//Retourne la valeur en fonction de la clé dans dictionnaire
 	public String getDictionnaireByKey(int v){
 		return dictionnaire.get(v);
 	}
 	
-	//retourne la clé en fonction de la valeur dans dictionnaire
+	
+	//Retourne la clé en fonction de la valeur dans dictionnaire
 	public int getDictionnaireByValue(String v){
 		for(int i= 0; i < dictionnaire.size(); i++){
 			if(dictionnaire.get(i).equals(v)){
@@ -42,12 +47,13 @@ public class Dictionnaire {
 	}
 	
 	
-	//retourne la valeur en fonction de la clé dans predicat
+	//Retourne la valeur en fonction de la clé dans predicat
 	public String getPredicatByKey(String v){
 		return predicat.get(v);
 	}
 	
-	//retourne la clé en fonction de la valeur dans predicat
+	
+	//Retourne la clé en fonction de la valeur dans predicat
 	public String getPredicatByValue(String v){
 		for(int i= 0; i < predicat.size(); i++){
 			if(predicat.get("p"+i).equals(v)){
@@ -57,6 +63,8 @@ public class Dictionnaire {
 		return null;
 	}
 	
+	
+	//Creation du dictionnaire en fonction du nom de fichier
 	public void creationDictionnaire(String fichier) throws IOException{
 		//Lecture du fichier
 		InputStream ipsData = new FileInputStream(fichier);
