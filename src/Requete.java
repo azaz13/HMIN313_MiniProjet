@@ -69,7 +69,7 @@ public class Requete {
 		System.out.println("where " + where);
 		//Decomposer et remplir la liste
 		//Problème avec le . car obliger de mettre espace avant et après
-		for(String s : where.split(" . ")){
+		for(String s : where.split("[ ]*[.][ ]*")){
 			if(s.contains("{")){
 				s = s.substring(1, s.length());
 			}
