@@ -10,7 +10,6 @@ import java.util.Hashtable;
 public class Dictionnaire {
 	Hashtable<Integer, String> dictionnaire; 
 	Hashtable<String, String> predicat; 
-	//ArrayList<Integer> objet; 
 	int compteur;
 	int compteurPredicat; 
 
@@ -93,9 +92,6 @@ public class Dictionnaire {
 						 dictionnaire.put(compteur, spo);
 						 compteur++;
 					}
-					/*if( i == 2){
-						objet.add(compteur);
-					}*/
 				}
 				i++;
 					
