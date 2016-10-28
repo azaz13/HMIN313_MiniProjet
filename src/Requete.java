@@ -42,46 +42,7 @@ public class Requete {
 		traitementWhere(where);
 		
 		//Verification de la requete
-		ArrayList<String> dif = new ArrayList<String>();
-//------------------------------------------------------------
-		// on commence par verifier qu'on a  pas ecrit un truc du genre select ?x, ?x ...  
-		for (String varSelect : argumentSelect) {
-			if (dif.isEmpty()) {
-				dif.add(varSelect);
-			}
-			else{
-				for (int j= 0; j< dif.size(); j++) {
-					if (dif.contains(varSelect)) {
-						System.out.println("ERR: "+dif.get(j)+" a au moins 2 occurences.");
-						reqMalFormee = true;
-					}
-				}
-				if (!reqMalFormee)
-				{
-					dif.add(varSelect);
-				}
-			}
-		}
-//---------------------------------------------------------------
-		boolean test2;
-		for (String varSelect : argumentSelect) {
-			test2 = false;
-			for (String varWhere : argumentWhere) {
-				for (String string : varWhere.split("[ ]")) {
-					if (string.subSequence(0, 1).equals("?")) {
-						if (varSelect.equals(string)) {
-							test2= true;
-						}
-					}
-				}
-			}
-			if (!test2) {
-				reqMalFormee = true;
-				System.out.println("ERR: La variable "+varSelect +" dans le SELECT n'existe pas des le WHERE.");
-					
-			}
-		}
-//-----------------------------------------------------------------
+		verificationRequete();
 	}
 	
 	
@@ -128,5 +89,48 @@ public class Requete {
 		}
 	}
 	
+	
+	public void verificationRequete(){
+		ArrayList<String> dif = new ArrayList<String>();
+		//------------------------------------------------------------
+		// on commence par verifier qu'on a  pas ecrit un truc du genre select ?x, ?x ...  
+		for (String varSelect : argumentSelect) {
+			if (dif.isEmpty()) {
+				dif.add(varSelect);
+			}
+			else{
+				for (int j= 0; j< dif.size(); j++) {
+					if (dif.contains(varSelect)) {
+						System.out.println("ERR: "+dif.get(j)+" a au moins 2 occurences.");
+						reqMalFormee = true;
+					}
+				}
+				if (!reqMalFormee)
+				{
+					dif.add(varSelect);
+				}
+			}
+		}
+		//---------------------------------------------------------------
+		boolean test2;
+		for (String varSelect : argumentSelect) {
+			test2 = false;
+			for (String varWhere : argumentWhere) {
+				for (String string : varWhere.split("[ ]")) {
+					if (string.subSequence(0, 1).equals("?")) {
+						if (varSelect.equals(string)) {
+							test2= true;
+						}
+					}
+				}
+			}
+			if (!test2) {
+				reqMalFormee = true;
+				System.out.println("ERR: La variable "+varSelect +" dans le SELECT n'existe pas des le WHERE.");
+					
+			}
+		}
+		//-----------------------------------------------------------------
+	}
 	
 }
