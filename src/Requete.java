@@ -8,13 +8,19 @@ public class Requete {
 	ArrayList<String> argumentWhere; 
 	ArrayList<String> argumentSelect;
 	ArrayList<String> var;
+	ArrayList<ArrayList<String>> traductionWhere; 
 	boolean reqMalFormee = false;
+	Dictionnaire dico; 
+	Indexation indexation; 
 
 	
-	public Requete(String r){
+	public Requete(String r, Dictionnaire d, Indexation in){
 		requete = r; 
 		argumentWhere = new ArrayList<String>();
 		argumentSelect = new ArrayList<String>();
+		dico = d; 
+		indexation = in; 
+		traductionWhere = new ArrayList<ArrayList<String>>();
 	}
 	
 
@@ -43,6 +49,9 @@ public class Requete {
 		
 		//Verification de la requete
 		verificationRequete();
+		
+		//Traduction du where
+		traductionWhere();
 	}
 	
 	
@@ -77,17 +86,16 @@ public class Requete {
 	
 	
 	public void traitementWhere(String where){
-		System.out.println("where " + where);
 		//Decomposer et remplir la liste
-		for(String s : where.split("[ ]*[.][ ]*")){
+		for(String s : where.split(" \\. ")){ //"[ ]*[.][ ]*"
 			if(s.contains("{")){
 				s = s.substring(1, s.length());
 			}
 			if(s.contains("}")){
 				s = s.substring(0, s.length() - 1);
 			}
+			
 			argumentWhere.add(s);
-			System.out.println(s);
 		}
 	}
 	
@@ -136,6 +144,65 @@ public class Requete {
 	}
 	
 	
+	public void traductionWhere(){
+		String predicat = null; 
+		String objet = null; 
+		String sujet = null; 
+		int nbSujet = -1;
+		int objetInt = -1; 
+		
+		for(int i = 0; i < argumentWhere.size(); i++){
+			int j = 0; 
+			for(String spo : argumentWhere.get(i).split(" ")){
+				
+				//Predicat
+				if(j == 1){
+					predicat = dico.getPredicatByValue(spo);
+				}
+				//sujet
+				else if(j == 0){
+					sujet =  spo;
+				}
+				//objet
+				else{
+					if(!spo.contains("?")){
+						objetInt = dico.getDictionnaireByValue(spo);
+						objet = Integer.toString(objetInt);
+					}
+					else{
+						objet = spo; 
+					}	
+				}
+				j++;				
+				
+			}
+			
+			System.out.println("traductionWhere " + predicat + " " + objet + " " + sujet);
+			
+			//Test si on connait le predicat ou pas 
+			//Si predicat == null
+			//Si on ne connait pas l'objet
+			
+			//ajout dans la liste
+			ArrayList<String> ligne = new ArrayList<String>();
+			ligne.add(predicat); 
+			ligne.add(objet); 
+			ligne.add(sujet); 
+			if(objet.contains("?")){
+				ligne.add("-1");
+			}
+			else{
+				ligne.add(Integer.toString(indexation.rechercheByPredicatObjetInStat(predicat, objetInt))); 
+			}
+			
+			traductionWhere.add(ligne); 
+			
+		}
+		
+		
+		
+		
+	}
 	
 	
 }

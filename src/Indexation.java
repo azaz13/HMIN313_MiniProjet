@@ -56,6 +56,27 @@ public class Indexation {
 	}
 	
 	
+	//Retourne le nbSujet associés au predicat et à l'objet
+	public int rechercheByPredicatObjetInStat(String predicat, int objet){
+		int valeur = -1; 
+		System.out.println(" rechercheByPredicatObjetInStat " + predicat + " " + objet);
+		ArrayList<ArrayList<Integer>> listeObjetNbSujet = stat.get(predicat);
+		ArrayList<Integer> liste; 
+		if(listeObjetNbSujet == null){
+			return valeur;
+		}
+		for(int i = 0; i < listeObjetNbSujet.size(); i++){
+			liste = listeObjetNbSujet.get(i);
+			Integer objetVoulu = liste.get(0);
+			if(objetVoulu == objet){
+				valeur = liste.get(1);
+			}
+		}
+		
+		return valeur;
+	}
+	
+	
 	//Creation des index et des statistiques
 	public void creationIndex() throws IOException{
 		//Lecture du fichier resultat
