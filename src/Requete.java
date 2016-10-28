@@ -122,6 +122,7 @@ public class Requete {
 			}
 		}
 		//---------------------------------------------------------------
+		//La variable dans le select n'est pas dans le where
 		boolean test2;
 		for (String varSelect : argumentSelect) {
 			test2 = false;
@@ -144,7 +145,7 @@ public class Requete {
 	}
 	
 	
-	public void traductionWhere(){
+	public boolean traductionWhere(){
 		String predicat = null; 
 		String objet = null; 
 		String sujet = null; 
@@ -178,10 +179,15 @@ public class Requete {
 			}
 						
 			//Test si on connait le predicat ou pas 
-			//Si predicat == null
-			//Si on ne connait pas l'objet
+			if(predicat == null){
+				return false; 
+			}
+			//Test si on connait l'objet ou pas
+			if(objet.equals("-1")){
+				return false; 
+			}
 			
-			//ajout dans la liste
+			//Ajout dans la liste
 			ArrayList<String> ligne = new ArrayList<String>();
 			ligne.add(predicat); 
 			ligne.add(objet); 
@@ -194,11 +200,14 @@ public class Requete {
 			}
 			
 			traductionWhere.add(ligne);
-			for(int k =0; k < ligne.size(); k++){
-				System.out.println(ligne.get(k));
-			}
 			
+			String l = ""; 
+			for(int k =0; k < ligne.size(); k++){
+				l += ligne.get(k) + " ";
+			}
+			System.out.println(l);
 		}
+		return true;
 	}
 	
 	
