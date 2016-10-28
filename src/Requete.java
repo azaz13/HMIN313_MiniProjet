@@ -51,26 +51,28 @@ public class Requete {
 		String args = null;
 		for(String str : select.split("SELECT")){
 			args = str; 
-			System.out.println(str);
 		}
 		
 		//liste des variables
 		if(args.contains(",")){
-			for(String a : args.split("[,]")){
+			for(String a : args.split(",")){
 				//test si il y a un espace devant on ne le prend pas
 				if (a.substring(0, 1).equals(" ")) {
 					argumentSelect.add(a.substring(1));
 				}
-				 
+				else{
+					argumentSelect.add(a);
+				}
 			}
 		}
 		else{
 			if (args.substring(0, 1).equals(" ")) {
 				argumentSelect.add(args.substring(1));
 			}
-			
-		}
-		
+			else{
+				argumentSelect.add(args);
+			}
+		}		
 	}
 	
 	
@@ -85,7 +87,7 @@ public class Requete {
 				s = s.substring(0, s.length() - 1);
 			}
 			argumentWhere.add(s);
-			System.out.println("s " + s);
+			System.out.println(s);
 		}
 	}
 	
@@ -132,5 +134,8 @@ public class Requete {
 		}
 		//-----------------------------------------------------------------
 	}
+	
+	
+	
 	
 }
