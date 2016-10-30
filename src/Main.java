@@ -51,13 +51,16 @@ public class Main {
 		
 		//Optimisation de la requête
 		Requete requete = new Requete(str, d, indexation);
-		requete.parsageRequete();
-		
+		boolean b = requete.parsageRequete();
+		//if(b){
 			ArrayList<String> resultat = requete.evaluationRequete(null);
 			for(int i = 0; i < resultat.size(); i++){
 				System.out.println(resultat.get(i));
 			}
-		
+		/*}
+		else{
+			System.out.println("Erreur");
+		}*/
 		System.out.println("**Fini**");
 		
 	}

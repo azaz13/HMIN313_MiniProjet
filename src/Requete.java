@@ -27,7 +27,7 @@ public class Requete {
 	
 
 	//Parsage de la requete
-	public void parsageRequete(){
+	public boolean parsageRequete(){
 		String ligne = requete;
 		String select = null; 
 		String where = null; 
@@ -52,15 +52,15 @@ public class Requete {
 		//Verification de la requete
 		boolean b = verificationRequete();
 		
-		//if(!b){
-		//Traduction du where
-		traductionWhere();
-		/*}
+		if(b){
+			//Traduction du where
+			return traductionWhere();
+		}
 		else
 		{
 			System.out.println("verif Requete mal formée");
-			return !b; 
-		}*/
+			return false; 
+		}
 		
 	}
 	
@@ -124,6 +124,7 @@ public class Requete {
 					if (dif.contains(varSelect)) {
 						System.out.println("ERR: "+dif.get(j)+" a au moins 2 occurences.");
 						reqMalFormee = true;
+						return false;
 					}
 				}
 				if (!reqMalFormee)
@@ -149,11 +150,13 @@ public class Requete {
 			if (!test2) {
 				reqMalFormee = true;
 				System.out.println("ERR: La variable "+varSelect +" dans le SELECT n'existe pas des le WHERE.");
+				return false;
 					
 			}
 		}
 		//-----------------------------------------------------------------
-		return reqMalFormee;
+		//return reqMalFormee;
+		return true;
 	}
 	
 	
