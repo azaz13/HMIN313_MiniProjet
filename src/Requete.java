@@ -12,6 +12,7 @@ public class Requete {
 	boolean reqMalFormee = false;
 	Dictionnaire dico; 
 	Indexation indexation; 
+	ArrayList<Integer> argsWhereUtilise; //0 pas utilisé 1 utilisé
 
 	
 	public Requete(String r, Dictionnaire d, Indexation in){
@@ -21,6 +22,7 @@ public class Requete {
 		dico = d; 
 		indexation = in; 
 		traductionWhere = new ArrayList<ArrayList<String>>();
+		argsWhereUtilise = new ArrayList<Integer>();
 	}
 	
 
@@ -95,6 +97,7 @@ public class Requete {
 				s = s.substring(0, s.length() - 1);
 			}
 			
+			argsWhereUtilise.add(0);
 			argumentWhere.add(s);
 		}
 	}
@@ -212,7 +215,7 @@ public class Requete {
 	
 	
 	//Evaluer la requete
-	public ArrayList<String> evaluationRequete(){
+	public ArrayList<String> evaluationRequete(ArrayList<Integer> tabInit){
 		//Rien dans le Where
 		if(traductionWhere.size() == 0){
 			return null;
@@ -223,51 +226,72 @@ public class Requete {
 		int positionPremier = -1; 
 		int positionSecond = -1; 
 		
+		ArrayList<Integer> resInt = new ArrayList<Integer>();
+		
 		//Parcours de la liste pour recuperer le premier et le second dans l'ordre decroissant
 		for(int i = 0; i < traductionWhere.size(); i++){
-			ArrayList<String> liste = traductionWhere.get(i); 
-			//Si c'est different de -1 c'est qu'on a un objet
-			if(!liste.get(3).equals("-1")){
-				if(premier == -1){
-					premier = Integer.parseInt(liste.get(3));
-					System.out.println("1ere fois " + premier);
-					positionPremier = i; 
+			ArrayList<String> liste = traductionWhere.get(i);
+			//On a pas utilisé ce where
+			if(argsWhereUtilise.get(i).equals(0)){
+				//Si c'est different de -1 c'est qu'on a un objet
+				if(!liste.get(3).equals("-1")){
+					if(premier == -1){
+						premier = Integer.parseInt(liste.get(3));
+						positionPremier = i; 
 
-				}
-				//On a un premier
-				else{
-					int c = Integer.parseInt(liste.get(3));
-					if(c < premier){
-						second = premier; 
-						premier = c;
-						positionSecond = positionPremier;
-						positionPremier = i;
 					}
-					else if( c < second){
-						second = c; 
-						positionSecond = i; 
+					//On a un premier
+					else{
+						int c = Integer.parseInt(liste.get(3));
+						if(c < premier){
+							second = premier; 
+							premier = c;
+							positionSecond = positionPremier;
+							positionPremier = i;
+						}
+						else if( c < second){
+							second = c; 
+							positionSecond = i; 
+						}
 					}
-				}
+				}	
+			
 			}
 			
 		}
 		
 		System.out.println(premier + " " + positionPremier + " " + second + " " + positionSecond);
 		
+		//Resultat du where qui a le plus petit nombre de sujet	
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
 		int objet1 = Integer.parseInt(traductionWhere.get(positionPremier).get(1)); 
 		ArrayList<Integer> l1 = indexation.rechercheByPredicatObjet(predicat1, objet1);
+		argsWhereUtilise.set(positionPremier, 1);
 		
-		String predicat2 = traductionWhere.get(positionSecond).get(0); 
-		int objet2 = Integer.parseInt(traductionWhere.get(positionSecond).get(1)); 
-		ArrayList<Integer> l2 = indexation.rechercheByPredicatObjet(predicat2, objet2);
-		
+		//Variable pour la liste qui se positionn
+		ArrayList<Integer> l2; 
+		if(tabInit != null){
+			l2 = tabInit; 
+		}
+		else{
+			String predicat2 = traductionWhere.get(positionSecond).get(0); 
+			int objet2 = Integer.parseInt(traductionWhere.get(positionSecond).get(1)); 
+			l2 = indexation.rechercheByPredicatObjet(predicat2, objet2);
+			argsWhereUtilise.set(positionSecond, 1);
+		}
+			
+		//On compare les résultats
 		ArrayList<String> resultat = new ArrayList<String>();
 		for(int i =0; i < l1.size(); i++){
 			if(l2.contains(l1.get(i))){
+				resInt.add(l1.get(i));
 				String sujet = dico.getDictionnaireByKey(l1.get(i)); 
 				resultat.add(sujet);
 			}
+		}
+		
+		if(argsWhereUtilise.contains(0)){
+			resultat = evaluationRequete(resInt); 
 		}
 
 		return resultat;
