@@ -269,25 +269,34 @@ public class Requete {
 		argsWhereUtilise.set(positionPremier, 1);
 		
 		//Variable pour la liste qui se positionn
-		ArrayList<Integer> l2; 
+		ArrayList<Integer> l2 = null; 
 		if(tabInit != null){
 			l2 = tabInit; 
 		}
-		else{
+		else if(positionSecond != -1){			
 			String predicat2 = traductionWhere.get(positionSecond).get(0); 
 			int objet2 = Integer.parseInt(traductionWhere.get(positionSecond).get(1)); 
 			l2 = indexation.rechercheByPredicatObjet(predicat2, objet2);
 			argsWhereUtilise.set(positionSecond, 1);
 		}
-			
-		//On compare les résultats
+		
 		ArrayList<String> resultat = new ArrayList<String>();
-		for(int i =0; i < l1.size(); i++){
-			if(l2.contains(l1.get(i))){
-				resInt.add(l1.get(i));
-				String sujet = dico.getDictionnaireByKey(l1.get(i)); 
-				resultat.add(sujet);
+
+		if(l2 != null){
+			//On compare les résultats
+			for(int i =0; i < l1.size(); i++){
+				if(l2.contains(l1.get(i))){
+					resInt.add(l1.get(i));
+					String sujet = dico.getDictionnaireByKey(l1.get(i)); 
+					resultat.add(sujet);
+				}
 			}
+		}
+		
+		//On a pas de résultat
+		if(resultat.size() == 0){
+			resultat.add("La requete n'a pas de résultats");
+			return resultat; 
 		}
 		
 		if(argsWhereUtilise.contains(0)){
