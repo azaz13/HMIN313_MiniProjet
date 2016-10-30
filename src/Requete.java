@@ -228,6 +228,7 @@ public class Requete {
 	
 	//Evaluer la requete
 	public ArrayList<String> evaluationRequete(ArrayList<Integer> tabInit){
+		
 		//Rien dans le Where
 		if(traductionWhere.size() == 0){
 			return null;
@@ -278,6 +279,7 @@ public class Requete {
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
 		int objet1 = Integer.parseInt(traductionWhere.get(positionPremier).get(1)); 
 		ArrayList<Integer> l1 = indexation.rechercheByPredicatObjet(predicat1, objet1);
+		System.out.println(l1.get(0));
 		argsWhereUtilise.set(positionPremier, 1);
 		
 		//Variable pour la liste qui se positionn
@@ -304,6 +306,7 @@ public class Requete {
 				}
 			}
 		}
+		else resultat.add(dico.getDictionnaireByKey(l1.get(0)));
 		
 		//On a pas de résultat
 		if(resultat.size() == 0){
