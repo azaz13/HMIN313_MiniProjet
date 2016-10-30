@@ -51,11 +51,17 @@ public class Main {
 		
 		//Optimisation de la requête
 		Requete requete = new Requete(str, d, indexation);
-		requete.parsageRequete();
-		ArrayList<String> resultat = requete.evaluationRequete(null);
-		for(int i = 0; i < resultat.size(); i++){
-			System.out.println(resultat.get(i));
+		boolean res = requete.parsageRequete();
+		if(res){
+			ArrayList<String> resultat = requete.evaluationRequete(null);
+			for(int i = 0; i < resultat.size(); i++){
+				System.out.println(resultat.get(i));
+			}
 		}
+		else{
+			System.out.println("requête mal formée");
+		}
+
 		System.out.println("**Fini**");
 		
 	}

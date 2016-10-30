@@ -27,7 +27,7 @@ public class Requete {
 	
 
 	//Parsage de la requete
-	public void parsageRequete(){
+	public boolean parsageRequete(){
 		String ligne = requete;
 		String select = null; 
 		String where = null; 
@@ -50,12 +50,18 @@ public class Requete {
 		traitementWhere(where);
 		
 		//Verification de la requete
-		verificationRequete();
+		boolean b = verificationRequete();
 		
-		//Traduction du where
-		traductionWhere();
+		if(!b){
+			//Traduction du where
+			return traductionWhere();
+		}
+		else
+		{
+			System.out.println("Requete mal formée");
+			return !b; 
+		}
 		
-		//Boolean à traiter
 	}
 	
 	
@@ -105,7 +111,7 @@ public class Requete {
 	}
 	
 	
-	public void verificationRequete(){
+	public boolean verificationRequete(){
 		ArrayList<String> dif = new ArrayList<String>();
 		//------------------------------------------------------------
 		// on commence par verifier qu'on a  pas ecrit un truc du genre select ?x, ?x ...  
@@ -147,6 +153,7 @@ public class Requete {
 			}
 		}
 		//-----------------------------------------------------------------
+		return reqMalFormee;
 	}
 	
 	
