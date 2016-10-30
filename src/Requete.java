@@ -27,7 +27,7 @@ public class Requete {
 	
 
 	//Parsage de la requete
-	public boolean parsageRequete(){
+	public void parsageRequete(){
 		String ligne = requete;
 		String select = null; 
 		String where = null; 
@@ -52,15 +52,15 @@ public class Requete {
 		//Verification de la requete
 		boolean b = verificationRequete();
 		
-		if(!b){
-			//Traduction du where
-			return traductionWhere();
-		}
+		//if(!b){
+		//Traduction du where
+		traductionWhere();
+		/*}
 		else
 		{
-			System.out.println("Requete mal formée");
+			System.out.println("verif Requete mal formée");
 			return !b; 
-		}
+		}*/
 		
 	}
 	
