@@ -180,7 +180,7 @@ public class Requete {
 					sujet =  spo;
 				}
 				//objet
-				else{
+				else if(j == 2){
 					if(!spo.contains("?")){
 						objetInt = dico.getDictionnaireByValue(spo);
 						objet = Integer.toString(objetInt);
@@ -192,15 +192,25 @@ public class Requete {
 				j++;				
 				
 			}
-						
+			
+			//requete mal formée
+			if((sujet == null) || ((objet == null) && (predicat == null )) ){
+				System.out.println("Requete mal formée");
+				return false;
+			}
+			
 			//Test si on connait le predicat ou pas 
 			if(predicat == null){
+				System.out.println("On ne connait pas le predicat donc la requete renvoie vide");
 				return false; 
 			}
+			
 			//Test si on connait l'objet ou pas
 			if(objet.equals("-1")){
+				System.out.println("On ne connait pas l'objet donc la requete renvoie vide");
 				return false; 
 			}
+
 			
 			//Ajout dans la liste
 			ArrayList<String> ligne = new ArrayList<String>();
@@ -221,6 +231,12 @@ public class Requete {
 				l += ligne.get(k) + " ";
 			}
 			System.out.println(l);
+			
+			predicat = null; 
+			objet = null; 
+			sujet = null; 
+			nbSujet = -1;
+			objetInt = -1;
 		}
 		return true;
 	}
@@ -279,7 +295,7 @@ public class Requete {
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
 		int objet1 = Integer.parseInt(traductionWhere.get(positionPremier).get(1)); 
 		ArrayList<Integer> l1 = indexation.rechercheByPredicatObjet(predicat1, objet1);
-		System.out.println(l1.get(0));
+		//System.out.println(l1.get(0));
 		argsWhereUtilise.set(positionPremier, 1);
 		
 		//Variable pour la liste qui se positionn
@@ -306,7 +322,11 @@ public class Requete {
 				}
 			}
 		}
-		else resultat.add(dico.getDictionnaireByKey(l1.get(0)));
+		else {
+			for(int i =0; i < l1.size(); i++){
+				resultat.add(dico.getDictionnaireByKey(l1.get(i)));
+			}
+		}
 		
 		//On a pas de résultat
 		if(resultat.size() == 0){
