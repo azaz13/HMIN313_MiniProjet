@@ -55,9 +55,12 @@ public class Main {
 		System.out.println(b);
 		if(b){
 			ArrayList<String> resultat = requete.evaluationRequete(null);
-			for(int i = 0; i < resultat.size(); i++){
+			if(resultat != null){
+				for(int i = 0; i < resultat.size(); i++){
 					System.out.println(resultat.get(i));
+				}
 			}
+
 		}
 		System.out.println("**Fini**");
 		

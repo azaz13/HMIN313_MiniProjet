@@ -252,6 +252,8 @@ public class Requete {
 		
 		int premier = -1; 
 		int second = -1; 
+		String sujetPremier = null;
+		String sujetSecond = null;
 		int positionPremier = -1; 
 		int positionSecond = -1; 
 		
@@ -267,7 +269,7 @@ public class Requete {
 					if(premier == -1){
 						premier = Integer.parseInt(liste.get(3));
 						positionPremier = i; 
-
+						sujetPremier = liste.get(2);
 					}
 					//On a un premier
 					else{
@@ -277,14 +279,16 @@ public class Requete {
 							premier = c;
 							positionSecond = positionPremier;
 							positionPremier = i;
+							sujetSecond = sujetPremier;
+							sujetPremier = liste.get(2);
 						}
 						else if( c < second){
 							second = c; 
 							positionSecond = i; 
 						}
 					}
-				}	
-			
+				}
+
 			}
 			
 		}
@@ -325,6 +329,7 @@ public class Requete {
 		else {
 			for(int i =0; i < l1.size(); i++){
 				resultat.add(dico.getDictionnaireByKey(l1.get(i)));
+				resInt.add(l1.get(i));
 			}
 		}
 		
@@ -334,12 +339,77 @@ public class Requete {
 			return resultat; 
 		}
 		
+		int compteurObjetConnu = 0;
+		int compteurObjetInconnu = 0;
+		
 		if(argsWhereUtilise.contains(0)){
+			for(int i = 0; i < argsWhereUtilise.size(); i++){
+				if(argsWhereUtilise.get(i).equals(0)){
+					if(traductionWhere.get(i).get(1).contains("?")){
+						compteurObjetInconnu++;
+					}
+					else{
+						compteurObjetConnu++;
+					}
+				}
+			}
+		}
+		
+		if(compteurObjetConnu > 0){
 			resultat = evaluationRequete(resInt); 
 		}
+		else if(compteurObjetInconnu >0){
+			resultat = evaluationRequeteNonEtoile(resInt, sujetPremier);
+		}
+
 
 		return resultat;
 	}
 	
 	
+	
+	public ArrayList<String> evaluationRequeteNonEtoile(ArrayList<Integer> tabInit, String sujet){
+		ArrayList<String> resultat = new ArrayList<String>();
+		ArrayList<Integer> resInt = new ArrayList<Integer>();
+		
+		int position = -1; 
+		String predicat = null;
+		String sujetPosition = null; 
+		
+		for(int i = 0; i < traductionWhere.size(); i++ ){
+			ArrayList<String> liste = traductionWhere.get(i);
+			if(argsWhereUtilise.get(i).equals(0)){
+				if(liste.get(1).equals(sujet)){
+					position = i; 
+					predicat = liste.get(0);
+					sujetPosition = liste.get(2);
+				}
+			}
+		}
+		
+		if(position == -1){
+			System.out.println("Erreur");
+			return null;
+		}
+		
+		argsWhereUtilise.set(position, 1);
+		for(int i = 0; i < tabInit.size(); i++){
+			ArrayList<Integer> liste = indexation.rechercheByPredicatObjet(predicat, tabInit.get(i));
+			for(int j = 0; j < liste.size(); j++){
+				if(!resInt.contains(liste.get(j))){
+					resInt.add(liste.get(j));
+					String s = dico.getDictionnaireByKey(liste.get(j)); 
+					resultat.add(s);
+				}
+			}
+		}
+		
+		if(argsWhereUtilise.contains(0)){
+			resultat = evaluationRequeteNonEtoile(resInt, sujetPosition); 
+
+		}
+		
+		return resultat; 	
+	}
+
 }
