@@ -17,7 +17,6 @@ public class Dictionnaire {
 	Dictionnaire(){
 		dictionnaire = new Hashtable<Integer, String>();
 		predicat = new Hashtable<String, String>();
-		//objet = new ArrayList<Integer>();
 		compteur = 0;
 		compteurPredicat = 0; 
 	}

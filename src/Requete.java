@@ -293,13 +293,10 @@ public class Requete {
 			
 		}
 		
-		//System.out.println(premier + " " + positionPremier + " " + second + " " + positionSecond);
-		
 		//Resultat du where qui a le plus petit nombre de sujet	
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
 		int objet1 = Integer.parseInt(traductionWhere.get(positionPremier).get(1)); 
 		ArrayList<Integer> l1 = indexation.rechercheByPredicatObjet(predicat1, objet1);
-		//System.out.println(l1.get(0));
 		argsWhereUtilise.set(positionPremier, 1);
 		
 		//Variable pour la liste qui se positionn
@@ -361,7 +358,6 @@ public class Requete {
 		else if(compteurObjetInconnu >0){
 			resultat = evaluationRequeteNonEtoile(resInt, sujetPremier);
 		}
-
 
 		return resultat;
 	}

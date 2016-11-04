@@ -164,21 +164,6 @@ public class Indexation {
 				}
 			}
 
-			
-			//Remplir la hashtable
-			/*int taille = 0;
-			Integer[][] tab1;
-			if(index.get(predicat) != null){
-				tab1 = index.get(predicat);
-				taille = tab1.length;
-			}
-			else{
-				tab1 = new Integer[10000000][2];
-			}
-			tab1[taille][0] = objet;
-			tab1[taille][1] = sujet;
-			index.put(predicat, tab1);*/
-			
 			predicat = null; 
 			sujet = -1; 
 			objet = -1;

@@ -23,8 +23,8 @@ public final class RDFRawParser {
 
 		@Override
 		public void handleStatement(Statement st) {
-			System.out.println("\n" + st.getSubject() + "\t " + st.getPredicate() + "\t "
-					+ st.getObject());
+			//System.out.println("\n" + st.getSubject() + "\t " + st.getPredicate() + "\t "
+			//		+ st.getObject());
 			fichierSortie.print(st.getSubject() + "\t" + st.getPredicate() + "\t"
 					+ st.getObject() + "\n");
 		}
