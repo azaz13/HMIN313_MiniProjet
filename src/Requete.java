@@ -226,11 +226,11 @@ public class Requete {
 			
 			traductionWhere.add(ligne);
 			
-			String l = ""; 
+			/*String l = ""; 
 			for(int k =0; k < ligne.size(); k++){
 				l += ligne.get(k) + " ";
 			}
-			System.out.println(l);
+			System.out.println(l);*/
 			
 			predicat = null; 
 			objet = null; 
@@ -293,7 +293,7 @@ public class Requete {
 			
 		}
 		
-		System.out.println(premier + " " + positionPremier + " " + second + " " + positionSecond);
+		//System.out.println(premier + " " + positionPremier + " " + second + " " + positionSecond);
 		
 		//Resultat du where qui a le plus petit nombre de sujet	
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
