@@ -43,6 +43,10 @@ public class Requete {
 			i++; 
 		}
 		
+		if((select == null) || (where == null)){
+			return false; 
+		}
+		
 		//Traitement sur le select
 		traitementSelect(select);
 		
