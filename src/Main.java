@@ -15,13 +15,19 @@ public class Main {
 		String nom = "resultat.txt";
 		
 		//Dictionnaire
+		long debutDictionnaire = System.currentTimeMillis();
 		Dictionnaire d = new Dictionnaire();
 		d.creationDictionnaire(nom);
+		System.out.println("Temps d'execution pour la création du dictionnaire : ");
+		System.out.println(System.currentTimeMillis()-debutDictionnaire);
 		System.out.println("Dictionnaire créé");
 		
 		//Indexation et Statistique
+		long debutIndexation = System.currentTimeMillis();
 		Indexation indexation = new Indexation(d, nom);
 		indexation.creationIndex();
+		System.out.println("Temps d'execution pour la création de l'index : ");
+		System.out.println(System.currentTimeMillis()-debutIndexation);
 		System.out.println("Indexation faite");
 		
 		//Lecture de la requête
@@ -31,6 +37,7 @@ public class Main {
 		//System.out.println("Vous avez saisi : " + str);
 		
 		//Optimisation de la requête
+		long debutRequete = System.currentTimeMillis();
 		Requete requete = new Requete(str, d, indexation);
 		boolean b = requete.parsageRequete();
 		if(b){
@@ -42,6 +49,8 @@ public class Main {
 			}
 
 		}
+		System.out.println("Temps d'execution pour l'execution de la requete : ");
+		System.out.println(System.currentTimeMillis()-debutRequete);
 		System.out.println("**Fini**");
 		
 	}
