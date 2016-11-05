@@ -44,7 +44,6 @@ public class Main {
 		int compteur = 1;
 		
 		while(execution){
-			
 			//Lecture de la requête
 			Scanner sc = new Scanner(System.in);
 			System.out.println("************");
@@ -52,6 +51,7 @@ public class Main {
 			System.out.println("Veuillez saisir une requête : ");
 			String str = sc.nextLine();
 			
+			//On veut arrêter 
 			if(str.equals("STOP")){
 				execution = false;
 			}
@@ -73,10 +73,11 @@ public class Main {
 					System.out.println("ERREUR");
 				}
 				long finRequete = System.currentTimeMillis()-debutRequete;
-				System.out.println("Temps d'execution pour l'execution de la requete : " + finRequete);
-				fichierSortie.print("Requete1 , " + finRequete + "\n");
+				System.out.println("Temps d'execution pour l'execution de la requete " + compteur + " : " + finRequete);
+				fichierSortie.print("Requete " + compteur + " , " + finRequete + "\n");
+				compteur++;
 			}
-			System.out.println("************");
+			System.out.println("************ \n");
 		}
 
 		System.out.println("**Fini**");
