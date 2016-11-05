@@ -61,12 +61,25 @@ public class Main {
 				Requete requete = new Requete(str, d, indexation);
 				boolean b = requete.parsageRequete();
 				if(b){
+					//Création du fichier pour avec le résultat des requêtes
+					String nomFichier = "resultat" + compteur + ".csv";
+					FileWriter fwr = new FileWriter(nomFichier); 
+					BufferedWriter bwr = new BufferedWriter(fwr);
+					PrintWriter fichierSortieResultat = new PrintWriter(bwr);
+					fichierSortieResultat.print(str + "\n");
+
 					ArrayList<String> resultat = requete.evaluationRequete(null);
 					if(resultat != null){
 						for(int i = 0; i < resultat.size(); i++){
 							System.out.println(resultat.get(i));
+							fichierSortieResultat.print(resultat.get(i) + "\n");
 						}
 					}
+					
+					//Fermeture fichier
+					fichierSortieResultat.close();
+					bwr.close();
+					fwr.close();
 
 				}
 				else{
