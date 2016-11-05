@@ -28,13 +28,13 @@ public class Dictionnaire {
 	}
 	
 	
-	//Retourne la valeur en fonction de la clé dans dictionnaire
+	//Retourne la valeur en fonction de la cle dans dictionnaire
 	public String getDictionnaireByKey(int v){
 		return dictionnaire.get(v);
 	}
 	
 	
-	//Retourne la clé en fonction de la valeur dans dictionnaire
+	//Retourne la cle en fonction de la valeur dans dictionnaire
 	public int getDictionnaireByValue(String v){
 		for(int i= 0; i < dictionnaire.size(); i++){
 			if(dictionnaire.get(i).equals(v)){
@@ -45,13 +45,13 @@ public class Dictionnaire {
 	}
 	
 	
-	//Retourne la valeur en fonction de la clé dans predicat
+	//Retourne la valeur en fonction de la cle dans predicat
 	public String getPredicatByKey(String v){
 		return predicat.get(v);
 	}
 	
 	
-	//Retourne la clé en fonction de la valeur dans predicat
+	//Retourne la cle en fonction de la valeur dans predicat
 	public String getPredicatByValue(String v){
 		for(int i= 0; i < predicat.size(); i++){
 			if(predicat.get("p"+i).equals(v)){

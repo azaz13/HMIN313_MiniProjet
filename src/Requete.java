@@ -12,7 +12,7 @@ public class Requete {
 	boolean reqMalFormee = false;
 	Dictionnaire dico; 
 	Indexation indexation; 
-	ArrayList<Integer> argsWhereUtilise; //0 pas utilisé 1 utilisé
+	ArrayList<Integer> argsWhereUtilise; //0 pas utilise 1 utilise
 
 	
 	public Requete(String r, Dictionnaire d, Indexation in){
@@ -62,7 +62,7 @@ public class Requete {
 		}
 		else
 		{
-			System.out.println("verif Requete mal formée");
+			System.out.println("verif Requete mal formee");
 			return false; 
 		}
 		
@@ -197,9 +197,9 @@ public class Requete {
 				
 			}
 			
-			//requete mal formée
+			//requete mal formee
 			if((sujet == null) || ((objet == null) && (predicat == null )) ){
-				System.out.println("Requete mal formée");
+				System.out.println("Requete mal formee");
 				return false;
 			}
 			
@@ -266,7 +266,7 @@ public class Requete {
 		//Parcours de la liste pour recuperer le premier et le second dans l'ordre decroissant
 		for(int i = 0; i < traductionWhere.size(); i++){
 			ArrayList<String> liste = traductionWhere.get(i);
-			//On a pas utilisé ce where
+			//On a pas utilise ce where
 			if(argsWhereUtilise.get(i).equals(0)){
 				//Si c'est different de -1 c'est qu'on a un objet
 				if(!liste.get(3).equals("-1")){
@@ -318,7 +318,7 @@ public class Requete {
 		ArrayList<String> resultat = new ArrayList<String>();
 
 		if(l2 != null){
-			//On compare les résultats
+			//On compare les resultats
 			for(int i =0; i < l1.size(); i++){
 				if(l2.contains(l1.get(i))){
 					resInt.add(l1.get(i));
@@ -334,9 +334,9 @@ public class Requete {
 			}
 		}
 		
-		//On a pas de résultat
+		//On a pas de resultat
 		if(resultat.size() == 0){
-			resultat.add("La requete n'a pas de résultats");
+			resultat.add("La requete n'a pas de resultats");
 			return resultat; 
 		}
 		

@@ -24,7 +24,7 @@ public class Indexation {
 	}
 	
 	
-	//Retourne la liste des objets sujets pour un predicat donné
+	//Retourne la liste des objets sujets pour un predicat donne
 	public ArrayList<ArrayList<Integer>> getTabByPredicat(String po){
 		return index.get(po);		
 	}
@@ -50,13 +50,13 @@ public class Indexation {
 	}
 	
 	
-	//Retourne la liste des objets associés au nombre de sujet dans stat
+	//Retourne la liste des objets associes au nombre de sujet dans stat
 	public ArrayList<ArrayList<Integer>> rechercheByPredicatInStat(String predicat){
 		return stat.get(predicat);		
 	}
 	
 	
-	//Retourne le nbSujet associés au predicat et à l'objet
+	//Retourne le nbSujet associes au predicat et a l'objet
 	public int rechercheByPredicatObjetInStat(String predicat, int objet){
 		int valeur = -1; 
 		ArrayList<ArrayList<Integer>> listeObjetNbSujet = stat.get(predicat);
@@ -158,7 +158,7 @@ public class Indexation {
 						}
 					}
 				}
-				//On n'a pas trouvé l'objet voulu donc on le rajoute
+				//On n'a pas trouve l'objet voulu donc on le rajoute
 				if(!trouver){
 					listeStat.add(statObjet);
 				}

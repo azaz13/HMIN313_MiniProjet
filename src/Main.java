@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		String nom = "resultat.txt";
 		
-		//Création du fichier pour avec le temps d'éxécution
+		//Creation du fichier pour avec le temps d'execution
 		FileWriter fw = new FileWriter("tempsExecution.csv"); 
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter fichierSortie = new PrintWriter(bw); 
@@ -27,16 +27,16 @@ public class Main {
 		Dictionnaire d = new Dictionnaire();
 		d.creationDictionnaire(nom);
 		long finDictionnaire = System.currentTimeMillis()-debutDictionnaire; 
-		System.out.println("Temps d'execution pour la création du dictionnaire : " + finDictionnaire);
+		System.out.println("Temps d'execution pour la creation du dictionnaire : " + finDictionnaire);
 		fichierSortie.print("Dictionnaire , " + finDictionnaire + "\n");
-		System.out.println("Dictionnaire créé");
+		System.out.println("Dictionnaire cree");
 		
 		//Indexation et Statistique
 		long debutIndexation = System.currentTimeMillis();
 		Indexation indexation = new Indexation(d, nom);
 		indexation.creationIndex();
 		long finIndexation = System.currentTimeMillis()-debutIndexation;
-		System.out.println("Temps d'execution pour la création de l'index : " + finIndexation);
+		System.out.println("Temps d'execution pour la creation de l'index : " + finIndexation);
 		fichierSortie.print("Indexation , " + finIndexation + "\n");
 		System.out.println("Indexation faite");
 		
@@ -44,24 +44,24 @@ public class Main {
 		int compteur = 1;
 		
 		while(execution){
-			//Lecture de la requête
+			//Lecture de la requete
 			Scanner sc = new Scanner(System.in);
 			System.out.println("************");
-			System.out.println("Pour arreter d'exécuter des requetes taper : STOP");
-			System.out.println("Veuillez saisir une requête : ");
+			System.out.println("Pour arreter d'executer des requetes taper : STOP");
+			System.out.println("Veuillez saisir une requete : ");
 			String str = sc.nextLine();
 			
-			//On veut arrêter 
+			//On veut arreter 
 			if(str.equals("STOP")){
 				execution = false;
 			}
 			else{
-				//Optimisation de la requête
+				//Optimisation de la requete
 				long debutRequete = System.currentTimeMillis();
 				Requete requete = new Requete(str, d, indexation);
 				boolean b = requete.parsageRequete();
 				if(b){
-					//Création du fichier pour avec le résultat des requêtes
+					//Creation du fichier pour avec le resultat des requetes
 					String nomFichier = "resultat" + compteur + ".csv";
 					FileWriter fwr = new FileWriter(nomFichier); 
 					BufferedWriter bwr = new BufferedWriter(fwr);
