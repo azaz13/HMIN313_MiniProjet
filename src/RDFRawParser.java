@@ -19,6 +19,8 @@ public final class RDFRawParser {
 	static BufferedWriter bw;
 	static PrintWriter fichierSortie; 
 	
+	static String nomFichierOwl = "University0_0.owl";
+	
 	private static class RDFListener extends RDFHandlerBase {
 
 		@Override
@@ -38,7 +40,7 @@ public final class RDFRawParser {
 		fichierSortie = new PrintWriter(bw);
 				
 		Reader reader = new FileReader(
-				"University0_0.owl");
+				nomFichierOwl);
 
 		org.openrdf.rio.RDFParser rdfParser = Rio
 				.createParser(RDFFormat.RDFXML);
