@@ -15,7 +15,7 @@ public class Main {
 
 	
 	public static void main(String[] args) throws IOException {
-		String nom = "resultat.txt";
+		String nom = "100K.rdf";
 		
 		//Creation du fichier pour avec le temps d'execution
 		FileWriter fw = new FileWriter("tempsExecution.csv"); 

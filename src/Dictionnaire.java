@@ -86,6 +86,10 @@ public class Dictionnaire {
 				}
 				//sujet ou objet
 				else{
+					if(i == 2){
+						spo.replace(" \\.", "");
+					}
+					
 					if(!dictionnaire.containsValue(spo)){
 						//ajout dans diko
 						 dictionnaire.put(compteur, spo);
