@@ -87,7 +87,7 @@ public class Dictionnaire {
 				//sujet ou objet
 				else{
 					if(i == 2){
-						spo.replace(" \\.", "");
+						spo = spo.substring(0, spo.length()-2);
 					}
 					
 					if(!dictionnaire.containsValue(spo)){
