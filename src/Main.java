@@ -15,7 +15,8 @@ public class Main {
 
 	
 	public static void main(String[] args) throws IOException {
-		String nom = "500K.rdf";
+		String nom = "resultat.txt";
+		String fichierRequete = "exempleRequete.txt";
 		
 		//Creation du fichier pour avec le temps d'execution
 		FileWriter fw = new FileWriter("tempsExecution.csv"); 
@@ -43,22 +44,28 @@ public class Main {
 		boolean execution = true; 
 		int compteur = 1;
 		
-		while(execution){
+		InputStream ipsData = new FileInputStream(fichierRequete);
+		InputStreamReader ipsrData = new InputStreamReader(ipsData);
+		BufferedReader brData = new BufferedReader(ipsrData);
+		String ligne = null;
+		
+		//while(execution){
+		while((ligne = brData.readLine()) != null){
 			//Lecture de la requete
-			Scanner sc = new Scanner(System.in);
+			//Scanner sc = new Scanner(System.in);
 			System.out.println("************");
-			System.out.println("Pour arreter d'executer des requetes taper : STOP");
-			System.out.println("Veuillez saisir une requete : ");
-			String str = sc.nextLine();
+			//System.out.println("Pour arreter d'executer des requetes taper : STOP");
+			//System.out.println("Veuillez saisir une requete : ");
+			//String str = sc.nextLine();
 			
 			//On veut arreter 
-			if(str.equals("STOP")){
+			/*if(str.equals("STOP")){
 				execution = false;
 			}
-			else{
+			else{*/
 				//Optimisation de la requete
 				long debutRequete = System.currentTimeMillis();
-				Requete requete = new Requete(str, d, indexation);
+				Requete requete = new Requete(ligne, d, indexation); //str
 				boolean b = requete.parsageRequete();
 				if(b){
 					//Creation du fichier pour avec le resultat des requetes
@@ -66,7 +73,7 @@ public class Main {
 					FileWriter fwr = new FileWriter(nomFichier); 
 					BufferedWriter bwr = new BufferedWriter(fwr);
 					PrintWriter fichierSortieResultat = new PrintWriter(bwr);
-					fichierSortieResultat.print(str + "\n");
+					fichierSortieResultat.print(ligne + "\n"); //str
 
 					ArrayList<String> resultat = requete.evaluationRequete(null);
 					if(resultat != null){
@@ -89,7 +96,7 @@ public class Main {
 				System.out.println("Temps d'execution pour l'execution de la requete " + compteur + " : " + finRequete);
 				fichierSortie.print("Requete " + compteur + " , " + finRequete + "\n");
 				compteur++;
-			}
+			//}
 			System.out.println("************ \n");
 		}
 
