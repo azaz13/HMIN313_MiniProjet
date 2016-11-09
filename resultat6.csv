@@ -1,2 +1,0 @@
-SELECT ?x WHERE {?x http://swat.cse.lehigh.edu/onto/univ-bench.owl#subOrganizationOf ?y . ?y http://swat.cse.lehigh.edu/onto/univ-bench.owl#name "University0"}
-http://www.Department0.University0.edu

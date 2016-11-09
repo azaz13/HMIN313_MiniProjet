@@ -78,7 +78,7 @@ public class Main {
 					ArrayList<String> resultat = requete.evaluationRequete(null);
 					if(resultat != null){
 						for(int i = 0; i < resultat.size(); i++){
-							System.out.println(resultat.get(i));
+							//System.out.println(resultat.get(i));
 							fichierSortieResultat.print(resultat.get(i) + "\n");
 						}
 					}
