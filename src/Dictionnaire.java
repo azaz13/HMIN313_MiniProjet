@@ -86,9 +86,11 @@ public class Dictionnaire {
 				}
 				//sujet ou objet
 				else{
-					if(i == 2){
+					/*if(i == 2){
 						spo = spo.substring(0, spo.length()-2);
-					}
+						//spo = spo.replace(" \\.", "");
+						//System.out.println("**" + spo + "**");
+					}*/
 					
 					if(!dictionnaire.containsValue(spo)){
 						//ajout dans diko
