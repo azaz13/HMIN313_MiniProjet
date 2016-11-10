@@ -1,6 +1,8 @@
+
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country137>}
+SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country249>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country50>}
-SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country28>}
+SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country28>} 
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country1>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country84>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country135>}
@@ -13,11 +15,13 @@ SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country52>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country63>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country43>}
+SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country209>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country221>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country41>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country91>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country18>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country114>}
+SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country167>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country211>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country91>}
 SELECT ?v0 WHERE {?v0 <http://schema.org/eligibleRegion> <http://db.uwaterloo.ca/~galuc/wsdbm/Country87>}
