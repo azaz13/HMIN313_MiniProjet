@@ -298,6 +298,10 @@ public class Requete {
 		}
 		//System.out.println(premier + " "+ positionPremier + " " + second + " "+ positionSecond);
 		
+		if(positionPremier == -1){
+			return null; 
+		}
+		
 		//Resultat du where qui a le plus petit nombre de sujet	
 		String predicat1 = traductionWhere.get(positionPremier).get(0); 
 		int objet1 = Integer.parseInt(traductionWhere.get(positionPremier).get(1)); 

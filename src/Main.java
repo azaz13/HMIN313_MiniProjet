@@ -62,6 +62,7 @@ public class Main {
 				//Lecture de la requete
 				//Scanner sc = new Scanner(System.in);
 				System.out.println("************");
+				System.out.println(ligne);
 				//System.out.println("Pour arreter d'executer des requetes taper : STOP");
 				//System.out.println("Veuillez saisir une requete : ");
 				//String str = sc.nextLine();
