@@ -1,0 +1,5 @@
+SELECT ?v0 WHERE {?v0 <http://purl.org/goodrelations/includes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product137>}
+SELECT ?v0 WHERE {?v0 <http://purl.org/goodrelations/includes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product87>}
+SELECT ?v0 WHERE {?v0 <http://purl.org/goodrelations/includes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product235>}
+SELECT ?v0 WHERE {?v0 <http://purl.org/goodrelations/includes> <http://db.uwaterloo.ca/~galuc/wsdbm/Product155>}
+SELECT ?v0 WHERE {?v0 <http://schema.org/birthDate> "1988-09-24"}
